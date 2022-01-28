@@ -19,12 +19,12 @@ all: $(EXE_NAME)
 
 $(EXE_NAME): $(MANDATORY)
 	$(info Compiling mandatory into $(EXE_NAME))
-	@$(CC) $(FLAGS) -D BUFFER_SIZE=$(BUFFFER_S) -o $(EXE_NAME) $^
+	@$(CC) $(FLAGS) -o $(EXE_NAME) $^
 
 bin/%.o: %.c
 	@echo "- Compiling $< -> $@"
 	@mkdir -p bin
-	@$(COMPILE) -c $< -o $@
+	@$(COMPILE) -c $< -o $@ -D BUFFER_SIZE=$(BUFFER_S)
 
 # Clean logic
 .PHONY: re fclean
