@@ -6,7 +6,7 @@
 /*   By: jre-gonz <jre-gonz@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 10:05:07 by jkutkut           #+#    #+#             */
-/*   Updated: 2022/01/28 13:47:04 by jre-gonz         ###   ########.fr       */
+/*   Updated: 2022/01/28 13:59:13 by jre-gonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ char	*get_next_line(int fd)
 	if (r == 0)
 		return (NULL);
 	line = ft_getline(&cache);
+	printf("cache\"%s\"endcache\n", cache);
 	// if (line == NULL)
 	// 	return (get_next_line(fd));
 	return (line);
