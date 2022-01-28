@@ -6,7 +6,7 @@
 /*   By: jre-gonz <jre-gonz@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 10:37:34 by jkutkut           #+#    #+#             */
-/*   Updated: 2022/01/28 13:56:09 by jre-gonz         ###   ########.fr       */
+/*   Updated: 2022/01/28 16:54:30 by jre-gonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 #include "get_next_line.h"
 
 #define FILE "get_next_line_main.c"
-#define OFFSET 15
-#define LINES 5
+#define OFFSET 1
+#define LINES 53
 
 int	main(void)
 {
@@ -25,13 +25,20 @@ int	main(void)
 	
 	printf("\nFile: ~%s~\n", FILE);
 	printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
-	f = open(FILE, O_RDWR);
+
+	if ((f = open(FILE, O_RDWR)) == -1)
+	{
+		printf("file opening failed\n");
+		exit(0);
+	}
 	i = 0;
 	while (i++ < OFFSET)
 	{
 		line = get_next_line(f);
 		free(line);
 	}
+	
+	printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
 	i = 0;
 	while (i++ < LINES)
 	{
