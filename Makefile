@@ -1,6 +1,6 @@
 # Compiler options
 CC=gcc
-FLAGS=-Wall -Wextra -Werror
+FLAGS=-Wall -Wextra # ! TODO -Werror
 COMPILE=@$(CC) $(FLAGS)
 EXE_NAME=gnl.out
 

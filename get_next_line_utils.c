@@ -6,7 +6,7 @@
 /*   By: jre-gonz <jre-gonz@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 10:05:58 by jkutkut           #+#    #+#             */
-/*   Updated: 2022/01/28 13:23:32 by jre-gonz         ###   ########.fr       */
+/*   Updated: 2022/01/28 13:38:07 by jre-gonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,29 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (NULL);
 	ft_strlcpy(str, s1, s1_len + 1);
 	ft_strlcpy(str + s1_len, s2, s2_len + 1);
+	return (str);
+}
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char	*str;
+	size_t	strlen;
+
+	if (s == NULL)
+		return (NULL);
+	strlen = ft_strlen(s);
+	if (start > strlen)
+	{
+		str = malloc(sizeof(char));
+		if (str != NULL)
+			str[0] = '\0';
+		return (str);
+	}
+	if (len > strlen - start)
+		len = strlen - start;
+	str = malloc(sizeof(char) * len + 1);
+	if (str == NULL)
+		return (NULL);
+	ft_strlcpy(str, s + start, len + 1);
 	return (str);
 }

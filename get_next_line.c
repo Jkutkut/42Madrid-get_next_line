@@ -6,7 +6,7 @@
 /*   By: jre-gonz <jre-gonz@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 10:05:07 by jkutkut           #+#    #+#             */
-/*   Updated: 2022/01/28 13:32:00 by jre-gonz         ###   ########.fr       */
+/*   Updated: 2022/01/28 13:47:04 by jre-gonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,20 @@ ssize_t	readChunk(char **cache, int fd)
 
 char	*ft_getline(char **cache)
 {
-	// char	*line;
-	return (*cache);
+	char	*line;
+	char	*tmp;
+	size_t	i;
+
+	i = 0;
+	while ((*cache)[i] && (*cache)[i] != '\n')
+		i++;
+	if (!(*cache)[i])
+		return (NULL);
+	line = ft_substr(*cache, 0, i);
+	tmp = ft_substr(*cache, i + 1, ft_strlen(*cache) - i);
+	free(*cache);
+	*cache = tmp;
+	return (line);
 }
 
 
@@ -38,11 +50,14 @@ char	*get_next_line(int fd)
 {
 	ssize_t	r;
 	static char	*cache = NULL;
+	char	*line;
 
+	readChunk(&cache, fd);
 	r = readChunk(&cache, fd);
-	printf("line: %s\n", ft_getline(&cache));
-	printf("chars red: %ld\n", r);
-	// printf("\n***********\n- fd: %d\n- txt: \"%s\"\n- bs: %u\n***********\n",
-			// fd, cache, BUFFER_SIZE);
-	return (NULL);
+	if (r == 0)
+		return (NULL);
+	line = ft_getline(&cache);
+	// if (line == NULL)
+	// 	return (get_next_line(fd));
+	return (line);
 }
