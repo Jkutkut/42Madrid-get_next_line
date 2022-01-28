@@ -1,0 +1,13 @@
+.info
+bin
+.vscode
+
+*.out
+*.a
+_test*
+*.pdf
+test1
+test2
+test3
+
+tests/libft.h
