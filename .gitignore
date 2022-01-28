@@ -4,8 +4,9 @@ bin
 
 *.out
 *.a
-_test*
+test*
 *.pdf
+
 test1
 test2
 test3
