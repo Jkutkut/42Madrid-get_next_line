@@ -6,43 +6,11 @@
 /*   By: jre-gonz <jre-gonz@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 10:05:58 by jkutkut           #+#    #+#             */
-/*   Updated: 2022/01/28 12:57:33 by jre-gonz         ###   ########.fr       */
+/*   Updated: 2022/01/28 13:23:32 by jre-gonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-t_chunk	*ft_lstnew(char *content)
-{
-	t_chunk	*e;
-
-	e = malloc(sizeof(t_chunk));
-	if (e == NULL)
-		return (NULL);
-	e->content = content;
-	e->next = NULL;
-	return (e);
-}
-
-t_chunk	*ft_lstlast(t_chunk *lst)
-{
-	if (lst == NULL)
-		return (NULL);
-	if (lst->next != NULL)
-		return (ft_lstlast(lst->next));
-	return (lst);
-}
-
-void	ft_lstadd_back(t_chunk **lst, t_chunk *new)
-{
-	if (lst == NULL || new == NULL)
-		return ;
-	if (*lst == NULL)
-		*lst = new;
-	else
-		ft_lstlast(*lst)->next = new;
-}
-
 
 size_t	ft_strlen(const char *s)
 {
@@ -73,7 +41,6 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	return (dst_l);
 }
 
-
 char	*ft_strdup(const char *s)
 {
 	char	*str;
@@ -82,5 +49,29 @@ char	*ft_strdup(const char *s)
 	if (str == NULL)
 		return (NULL);
 	ft_strlcpy(str, s, ft_strlen(s) + 1);
+	return (str);
+}
+
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	char	*str;
+	size_t	s1_len;
+	size_t	s2_len;
+
+	if (s1 == NULL)
+	{
+		if (s2 == NULL)
+			return (NULL);
+		return (ft_strdup(s2));
+	}
+	s1_len = ft_strlen(s1);
+	if (s2 == NULL)
+		return (ft_strdup(s1));
+	s2_len = ft_strlen(s2);
+	str = (char *) malloc(sizeof(char) * (s1_len + s2_len + 1));
+	if (str == NULL)
+		return (NULL);
+	ft_strlcpy(str, s1, s1_len + 1);
+	ft_strlcpy(str + s1_len, s2, s2_len + 1);
 	return (str);
 }
