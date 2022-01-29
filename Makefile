@@ -3,7 +3,6 @@ CC=gcc
 FLAGS=-Wall -Wextra # ! TODO -Werror
 COMPILE=@$(CC) $(FLAGS)
 EXE_NAME=gnl.out
-TESTER_NAME=gnl_tester.out
 
 BUFFER_S=42
 
@@ -12,7 +11,7 @@ SRCS =	get_next_line.c \
 		get_next_line_utils.c
 BINS = ${SRCS:%.c=bin/%.o}
 
-EXE_MAIN_SRC = get_next_line_main.c
+EXE_MAIN_SRC = test_main/get_next_line_main.c
 
 EXE_MAIN = ${EXE_MAIN_SRC:%.c=bin/%.o}
 
@@ -28,9 +27,9 @@ test: $(EXE_NAME)
 	$(info Testing $(EXE_NAME))
 	./$(EXE_NAME)
 
-tester: $(MANDATORY)
-	$(info Compiling tester into $(TESTER_NAME))
-	@$(CC) $(FLAGS) -o $(TESTER_NAME) $^ $@.c
+test_main/%.c: $(MANDATORY)
+	$(info Compiling tester)
+	@$(CC) $(FLAGS) -o $(EXE_NAME) $^ $@
 
 bin/%.o: %.c
 	@echo "- Compiling $< -> $@"

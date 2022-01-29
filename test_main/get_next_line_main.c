@@ -6,11 +6,12 @@
 /*   By: jre-gonz <jre-gonz@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 10:37:34 by jkutkut           #+#    #+#             */
-/*   Updated: 2022/01/29 13:22:32 by jre-gonz         ###   ########.fr       */
+/*   Updated: 2022/01/29 23:15:50 by jre-gonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
+#include <stdio.h>
 #include "get_next_line.h"
 
 #define FILE "get_next_line_main.c"
