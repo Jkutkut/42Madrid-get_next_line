@@ -6,7 +6,7 @@
 /*   By: jre-gonz <jre-gonz@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 10:05:07 by jkutkut           #+#    #+#             */
-/*   Updated: 2022/01/29 11:27:14 by jre-gonz         ###   ########.fr       */
+/*   Updated: 2022/01/29 16:44:23 by jre-gonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	*ft_getline(char **cache)
 		i++;
 	if ((*cache)[i] == '\0')
 		return (NULL);
-	line = ft_substr(*cache, 0, i);
+	line = ft_substr(*cache, 0, i + 1);
 	if (ft_strlen(*cache) - i == 0)
 		tmp = NULL;
 	else
@@ -75,7 +75,13 @@ char	*get_next_line(int fd)
 		{
 			r = readChunk(&cache, fd);
 			// printf("r: %d\n", r);
-			if (r <= 0)
+			if (r == 0 && cache != NULL)
+			{
+				line = ft_strdup(cache);
+				free(cache);
+				cache = NULL;
+			}
+			else if (r <= 0)
 			{
 				free(cache);
 				cache = NULL;
