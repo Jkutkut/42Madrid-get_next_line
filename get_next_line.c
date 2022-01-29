@@ -6,7 +6,7 @@
 /*   By: jre-gonz <jre-gonz@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 10:05:07 by jkutkut           #+#    #+#             */
-/*   Updated: 2022/01/29 11:19:55 by jre-gonz         ###   ########.fr       */
+/*   Updated: 2022/01/29 11:27:14 by jre-gonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,21 @@
 
 ssize_t	readChunk(char **cache, int fd)
 {
-	ssize_t	r;
-	// char	txt[BUFFER_SIZE + 1];
-	char	*txt;
-	char *oldcache;
+	ssize_t		r;
+	static char	txt[BUFFER_SIZE + 1];
+	// char	*txt;
+	char		*oldcache;
 
-	txt = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	// txt = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	r = read(fd, txt, BUFFER_SIZE);
 	if (r > 0)
 	{
 		txt[r] = '\0';
-		
 		oldcache = *cache;
 		*cache = ft_strjoin(oldcache, txt);
 		free(oldcache);
 	}
-	free(txt);
+	// free(txt);
 	return r;
 }
 
