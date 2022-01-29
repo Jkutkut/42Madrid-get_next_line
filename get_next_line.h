@@ -6,20 +6,15 @@
 /*   By: jre-gonz <jre-gonz@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 10:00:44 by jkutkut           #+#    #+#             */
-/*   Updated: 2022/01/29 11:01:01 by jre-gonz         ###   ########.fr       */
+/*   Updated: 2022/01/29 17:34:05 by jre-gonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
-#define GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-#include <unistd.h>
-#include <stdlib.h>
-
-#include <stdio.h> // ! TODO DEBUG
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 42
-#endif
+# include <unistd.h>
+# include <stdlib.h>
 
 typedef struct s_chunk
 {
@@ -36,4 +31,3 @@ char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 
 #endif
-

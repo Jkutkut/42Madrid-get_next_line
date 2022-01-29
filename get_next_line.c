@@ -6,13 +6,13 @@
 /*   By: jre-gonz <jre-gonz@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 10:05:07 by jkutkut           #+#    #+#             */
-/*   Updated: 2022/01/29 17:29:52 by jre-gonz         ###   ########.fr       */
+/*   Updated: 2022/01/29 17:33:14 by jre-gonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-ssize_t	readChunk(char **cache, int fd)
+ssize_t	ft_readchunk(char **cache, int fd)
 {
 	ssize_t		r;
 	static char	txt[BUFFER_SIZE + 1];
@@ -26,7 +26,7 @@ ssize_t	readChunk(char **cache, int fd)
 		*cache = ft_strjoin(oldcache, txt);
 		free(oldcache);
 	}
-	return r;
+	return (r);
 }
 
 char	*ft_getline(char **cache)
@@ -52,12 +52,11 @@ char	*ft_getline(char **cache)
 	return (line);
 }
 
-
 char	*get_next_line(int fd)
 {
 	static char	*cache = NULL;
-	ssize_t	r;
-	char	*line;
+	ssize_t		r;
+	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
@@ -67,14 +66,14 @@ char	*get_next_line(int fd)
 		line = ft_getline(&cache);
 		if (line == NULL)
 		{
-			r = readChunk(&cache, fd);
+			r = ft_readchunk(&cache, fd);
 			if (r <= 0)
 			{
 				if (r == 0 && cache != NULL && ft_strlen(cache) > 0)
 					line = ft_strdup(cache);
 				free(cache);
 				cache = NULL;
-				break;
+				break ;
 			}
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: jre-gonz <jre-gonz@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 10:05:58 by jkutkut           #+#    #+#             */
-/*   Updated: 2022/01/29 11:28:10 by jre-gonz         ###   ########.fr       */
+/*   Updated: 2022/01/29 17:40:23 by jre-gonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ size_t	ft_strlen(const char *s)
 		l++;
 	return (l);
 }
-
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
