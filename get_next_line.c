@@ -6,7 +6,7 @@
 /*   By: jre-gonz <jre-gonz@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 10:05:07 by jkutkut           #+#    #+#             */
-/*   Updated: 2022/01/28 17:00:06 by jre-gonz         ###   ########.fr       */
+/*   Updated: 2022/01/29 11:19:55 by jre-gonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char	*get_next_line(int fd)
 	// readChunk(&cache, fd);
 	
 	// printf("@@@@@@@@@@@cache@@@@@@@@@@@\"%s\"@@@@@@@@@endcache@@@@@@@@@\n", cache);
-	if (fd < 0)
+	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
 	line = NULL;
 	while (line == NULL)
@@ -76,8 +76,12 @@ char	*get_next_line(int fd)
 		{
 			r = readChunk(&cache, fd);
 			// printf("r: %d\n", r);
-			if (r == 0)
-				return (cache);
+			if (r <= 0)
+			{
+				free(cache);
+				cache = NULL;
+				return (NULL);
+			}
 		}
 	}
 	return (line);

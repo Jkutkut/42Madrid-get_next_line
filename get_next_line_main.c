@@ -6,7 +6,7 @@
 /*   By: jre-gonz <jre-gonz@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 10:37:34 by jkutkut           #+#    #+#             */
-/*   Updated: 2022/01/28 16:54:30 by jre-gonz         ###   ########.fr       */
+/*   Updated: 2022/01/29 11:16:45 by jre-gonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 #define FILE "get_next_line_main.c"
 #define OFFSET 1
-#define LINES 53
+#define LINES 80
+// #define LINES 53
 
 int	main(void)
 {
@@ -47,5 +48,6 @@ int	main(void)
 		free(line);
 	}
 	printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+	// system("memusage ./gnl.out");
 	return (0);
 }

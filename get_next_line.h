@@ -6,7 +6,7 @@
 /*   By: jre-gonz <jre-gonz@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 10:00:44 by jkutkut           #+#    #+#             */
-/*   Updated: 2022/01/28 13:39:49 by jre-gonz         ###   ########.fr       */
+/*   Updated: 2022/01/29 11:01:01 by jre-gonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 #include <stdlib.h>
 
 #include <stdio.h> // ! TODO DEBUG
+#ifndef BUFFER_SIZE
+# define BUFFER_SIZE 42
+#endif
 
 typedef struct s_chunk
 {
