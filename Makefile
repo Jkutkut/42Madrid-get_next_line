@@ -57,8 +57,8 @@ test: $(MANDATORY_EXE)
 re: fclean all
 
 fclean:
-	$(info Removing $(MANDATORY_EXE))
-	@rm -f $(MANDATORY_EXE)
+	$(info Removing $(MANDATORY_EXE), $(BONUS_EXE))
+	@rm -f $(MANDATORY_EXE) $(BONUS_EXE)
 	$(info Removing binary directory)
 	@rm -rf ./bin
 	$(info Project now clean.)
