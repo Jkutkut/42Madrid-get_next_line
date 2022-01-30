@@ -1,52 +1,64 @@
 # Compiler options
-CC=gcc
-FLAGS=-Wall -Wextra # ! TODO -Werror
-COMPILE=@$(CC) $(FLAGS)
-EXE_NAME=gnl.out
+CC				=	gcc
+FLAGS			=	-Wall -Wextra # ! TODO -Werror
+COMPILE			=	@$(CC) $(FLAGS)
+MANDATORY_EXE	=	gnl.out
+BONUS_EXE		=	gnl_bonus.out
 
-BUFFER_S=42
+BUFFER_S		=	42
 
 # Binaries variables
-SRCS =	get_next_line.c \
-		get_next_line_utils.c
-BINS = ${SRCS:%.c=bin/%.o}
+SRCS_MANDATORY	=	get_next_line.c \
+					get_next_line_utils.c
+SRCS_BONUS		=	get_next_line_bonus.c \
+					get_next_line_utils_bonus.c
 
-EXE_MAIN_SRC = test_main/get_next_line_main.c
+BINS_MANDATORY	=	${SRCS_MANDATORY:%.c=bin/%.o}
+BINS_BONUS		=	${SRCS_BONUS:%.c=bin/%.o}
 
-EXE_MAIN = ${EXE_MAIN_SRC:%.c=bin/%.o}
+MAN_MAIN_SRC	=	test_main/get_next_line_main.c
+MAN_MAIN_BIN	=	${MAN_MAIN_SRC:%.c=bin/%.o}
 
-MANDATORY = $(BINS)
+BONUS_MAIN_SRC	=	""
+BONUS_MAIN_BIN	=	${BONUS_MAIN_SRC:%.c=bin/%.o}
 
-all: $(EXE_NAME)
+MANDATORY		=	$(BINS_MANDATORY) $(MAN_MAIN_BIN)
+BONUS			=	$(BINS_BONUS) $(BONUS_MAIN_BIN)
 
-$(EXE_NAME): $(MANDATORY) $(EXE_MAIN)
-	$(info Compiling mandatory into $(EXE_NAME))
-	@$(CC) $(FLAGS) -o $(EXE_NAME) $(EXE_MAIN) $^
+# Triggers
+all: $(MANDATORY_EXE)
+bonus: $(BONUS_EXE)
 
-test: $(EXE_NAME)
-	$(info Testing $(EXE_NAME))
-	./$(EXE_NAME)
+$(MANDATORY_EXE): $(MANDATORY)
+	$(info Compiling mandatory into $(MANDATORY_EXE))
+	$(CC) $(FLAGS) -o $(MANDATORY_EXE) $^
 
-test_main/%.c: $(MANDATORY)
-	$(info Compiling tester)
-	@$(CC) $(FLAGS) -o $(EXE_NAME) $^ $@
+$(BONUS_EXE): $(BONUS)
+	$(info Compiling bonus into $(BONUS_EXE))
+	$(CC) $(FLAGS) -o $(BONUS_EXE) $^
 
 bin/%.o: %.c
 	@echo "- Compiling $< -> $@"
 	@mkdir -p bin
-	@$(COMPILE) -c $< -o $@ -D BUFFER_SIZE=$(BUFFER_S)
+	$(COMPILE) -c $< -o $@ -D BUFFER_SIZE=$(BUFFER_S)
+
+# Test
+test_main/%.c: $(MANDATORY)
+	$(info Compiling tester)
+	$(CC) $(FLAGS) -o $(MANDATORY_EXE) $^ $@
+
+test: $(MANDATORY_EXE)
+	$(info Testing $(MANDATORY_EXE))
+	./$(MANDATORY_EXE)
 
 # Clean logic
 .PHONY: re fclean
+
 re: fclean all
 
 fclean:
-	$(info Removing $(EXE_NAME) and executables)
-	@rm -f $(EXE_NAME) *.out
+	$(info Removing $(MANDATORY_EXE))
+	@rm -f $(MANDATORY_EXE)
 	$(info Removing binary directory)
 	@rm -rf ./bin
 	$(info Project now clean.)
-
-so:
-	$(CC) -nostartfiles -fPIC $(CFLAGS) $(wildcard *.c)
-	gcc -nostartfiles -shared -o libft.so $(MANDATORY) $(BONUS_OBJ)
