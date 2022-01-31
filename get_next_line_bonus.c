@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jre-gonz <jre-gonz@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 10:05:07 by jkutkut           #+#    #+#             */
-/*   Updated: 2022/01/29 17:33:14 by jre-gonz         ###   ########.fr       */
+/*   Updated: 2022/01/31 22:29:34 by jre-gonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 ssize_t	ft_readchunk(char **cache, int fd)
 {
-	ssize_t		r;
-	static char	txt[BUFFER_SIZE + 1];
-	char		*oldcache;
+	ssize_t	r;
+	char	*txt;
+	char	*oldcache;
 
+	txt = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	r = read(fd, txt, BUFFER_SIZE);
 	if (r > 0)
 	{
@@ -26,6 +27,7 @@ ssize_t	ft_readchunk(char **cache, int fd)
 		*cache = ft_strjoin(oldcache, txt);
 		free(oldcache);
 	}
+	free(txt);
 	return (r);
 }
 
@@ -54,7 +56,7 @@ char	*ft_getline(char **cache)
 
 char	*get_next_line(int fd)
 {
-	static char	*cache = NULL;
+	static char	*cache[2048];
 	ssize_t		r;
 	char		*line;
 
@@ -63,16 +65,16 @@ char	*get_next_line(int fd)
 	line = NULL;
 	while (line == NULL)
 	{
-		line = ft_getline(&cache);
+		line = ft_getline(&cache[fd]);
 		if (line == NULL)
 		{
-			r = ft_readchunk(&cache, fd);
+			r = ft_readchunk(&cache[fd], fd);
 			if (r <= 0)
 			{
-				if (r == 0 && cache != NULL && ft_strlen(cache) > 0)
-					line = ft_strdup(cache);
-				free(cache);
-				cache = NULL;
+				if (r == 0 && cache[fd] != NULL && ft_strlen(cache[fd]) > 0)
+					line = ft_strdup(cache[fd]);
+				free(cache[fd]);
+				cache[fd] = NULL;
 				break ;
 			}
 		}
