@@ -1,6 +1,6 @@
 # Compiler options
 CC				=	gcc
-FLAGS			=	-Wall -Wextra # ! TODO -Werror
+FLAGS			=	-Wall -Wextra -Werror
 COMPILE			=	@$(CC) $(FLAGS)
 MANDATORY_EXE	=	gnl.out
 BONUS_EXE		=	gnl_bonus.out
@@ -19,7 +19,7 @@ BINS_BONUS		=	${SRCS_BONUS:%.c=bin/%.o}
 MAN_MAIN_SRC	=	test_main/get_next_line_main.c
 MAN_MAIN_BIN	=	${MAN_MAIN_SRC:%.c=bin/%.o}
 
-BONUS_MAIN_SRC	=	""
+BONUS_MAIN_SRC	=	test_main/bonus_multiple_files.c
 BONUS_MAIN_BIN	=	${BONUS_MAIN_SRC:%.c=bin/%.o}
 
 MANDATORY		=	$(BINS_MANDATORY) $(MAN_MAIN_BIN)
@@ -27,29 +27,30 @@ BONUS			=	$(BINS_BONUS) $(BONUS_MAIN_BIN)
 
 # Triggers
 all: $(MANDATORY_EXE)
+
 bonus: $(BONUS_EXE)
 
 $(MANDATORY_EXE): $(MANDATORY)
 	$(info Compiling mandatory into $(MANDATORY_EXE))
-	$(CC) $(FLAGS) -o $(MANDATORY_EXE) $^
+	$(COMPILE) -o $(MANDATORY_EXE) $^
 
 $(BONUS_EXE): $(BONUS)
 	$(info Compiling bonus into $(BONUS_EXE))
-	$(CC) $(FLAGS) -o $(BONUS_EXE) $^
+	$(COMPILE) -o $(BONUS_EXE) $^
 
 bin/%.o: %.c
 	@echo "- Compiling $< -> $@"
-	@mkdir -p bin
+	@mkdir -p $(dir $@)
 	$(COMPILE) -c $< -o $@ -D BUFFER_SIZE=$(BUFFER_S)
 
 # Test
-test_main/%.c: $(MANDATORY)
-	$(info Compiling tester)
-	$(CC) $(FLAGS) -o $(MANDATORY_EXE) $^ $@
-
 test: $(MANDATORY_EXE)
 	$(info Testing $(MANDATORY_EXE))
 	./$(MANDATORY_EXE)
+
+test_bonus: $(BONUS_EXE)
+	$(info Testing $(BONUS_EXE))
+	./$(BONUS_EXE)
 
 # Clean logic
 .PHONY: re fclean
