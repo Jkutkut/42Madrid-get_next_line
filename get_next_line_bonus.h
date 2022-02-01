@@ -6,7 +6,7 @@
 /*   By: jre-gonz <jre-gonz@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 10:00:44 by jkutkut           #+#    #+#             */
-/*   Updated: 2022/01/31 22:44:26 by jre-gonz         ###   ########.fr       */
+/*   Updated: 2022/02/01 18:55:44 by jre-gonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <limits.h>
 
 typedef struct s_chunk
 {

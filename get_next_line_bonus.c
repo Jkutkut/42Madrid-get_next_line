@@ -6,7 +6,7 @@
 /*   By: jre-gonz <jre-gonz@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 10:05:07 by jkutkut           #+#    #+#             */
-/*   Updated: 2022/01/31 22:29:34 by jre-gonz         ###   ########.fr       */
+/*   Updated: 2022/02/01 18:52:34 by jre-gonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,11 @@ char	*ft_getline(char **cache)
 
 char	*get_next_line(int fd)
 {
-	static char	*cache[2048];
+	static char	*cache[OPEN_MAX];
 	ssize_t		r;
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE < 1)
+	if (fd < 0 || BUFFER_SIZE < 1 || fd > OPEN_MAX)
 		return (NULL);
 	line = NULL;
 	while (line == NULL)
