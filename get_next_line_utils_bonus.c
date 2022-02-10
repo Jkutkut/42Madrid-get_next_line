@@ -6,11 +6,11 @@
 /*   By: jre-gonz <jre-gonz@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 10:05:58 by jkutkut           #+#    #+#             */
-/*   Updated: 2022/01/29 17:40:23 by jre-gonz         ###   ########.fr       */
+/*   Updated: 2022/02/10 18:45:00 by jre-gonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 size_t	ft_strlen(const char *s)
 {

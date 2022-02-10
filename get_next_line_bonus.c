@@ -6,11 +6,11 @@
 /*   By: jre-gonz <jre-gonz@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 10:05:07 by jkutkut           #+#    #+#             */
-/*   Updated: 2022/02/01 18:52:34 by jre-gonz         ###   ########.fr       */
+/*   Updated: 2022/02/10 18:44:43 by jre-gonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 ssize_t	ft_readchunk(char **cache, int fd)
 {
