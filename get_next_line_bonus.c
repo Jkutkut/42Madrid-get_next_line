@@ -6,11 +6,11 @@
 /*   By: jre-gonz <jre-gonz@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 10:05:07 by jkutkut           #+#    #+#             */
-/*   Updated: 2022/02/01 18:57:31 by jre-gonz         ###   ########.fr       */
+/*   Updated: 2022/02/10 18:42:26 by jre-gonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 ssize_t	ft_readchunk(char **cache, int fd)
 {
@@ -56,7 +56,7 @@ char	*ft_getline(char **cache)
 
 char	*get_next_line(int fd)
 {
-	static char	*cache[2048];
+	static char	*cache[OPEN_MAX];
 	ssize_t		r;
 	char		*line;
 
