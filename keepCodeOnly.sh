@@ -1,13 +1,13 @@
 #!/bin/sh
 
 removeDebug() {
-	dirsToRemove=".git .test_main .test_files gnlTester"
+	dirsToRemove=".git test_files test_main gnlTester"
 	filesToRemove=".gitignore Makefile"
 
 	echo "Removing directories:\n$dirsToRemove"
 	rm -rf $dirsToRemove
 
-	echo "Removing files"
+	echo "Removing files:\n$filesToRemove"
 	rm $filesToRemove
 }
 
