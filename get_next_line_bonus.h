@@ -6,7 +6,7 @@
 /*   By: jre-gonz <jre-gonz@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 10:00:44 by jkutkut           #+#    #+#             */
-/*   Updated: 2022/03/24 13:38:44 by jre-gonz         ###   ########.fr       */
+/*   Updated: 2022/03/24 15:37:21 by jre-gonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <limits.h>
+
+# ifndef OPEN_MAX
+#  define OPEN_MAX 4096
+# endif
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 4096
