@@ -6,28 +6,26 @@
 /*   By: jre-gonz <jre-gonz@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 10:05:07 by jkutkut           #+#    #+#             */
-/*   Updated: 2022/02/10 18:44:43 by jre-gonz         ###   ########.fr       */
+/*   Updated: 2022/03/24 13:43:38 by jre-gonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "get_next_line_bonus.h"
 
 ssize_t	ft_readchunk(char **cache, int fd)
 {
 	ssize_t	r;
-	char	*txt;
+	char	txt[BUFFER_SIZE + 1];
 	char	*oldcache;
 
-	txt = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	r = read(fd, txt, BUFFER_SIZE);
-	if (r > 0)
-	{
-		txt[r] = '\0';
-		oldcache = *cache;
-		*cache = ft_strjoin(oldcache, txt);
-		free(oldcache);
-	}
-	free(txt);
+	if (r <= 0)
+		return (r);
+	txt[r] = '\0';
+	oldcache = *cache;
+	*cache = ft_strjoin(oldcache, txt);
+	free(oldcache);
 	return (r);
 }
 
