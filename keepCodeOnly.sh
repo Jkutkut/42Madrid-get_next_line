@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 removeDebug() {
 	dirsToRemove=".git .test_main .test_files gnlTester"
@@ -12,20 +12,20 @@ removeDebug() {
 }
 
 cleanRepo() {
-	echo "Keep Bonus o Mandatory? [B/M]"
-	read response -n1
+	echo "Keep Bonus o Mandatory? [B/M] \c"
+	read response
 
 	case $response in
 		b|B)
-			echo "Bonus"
+			echo "Removing mandatory..."
 			for i in $(ls *bonus*); do
 				f=$(echo $i | sed 's/_bonus//')
 				rm $f
-				mv $f $i
+				mv $i $f
 			done
 			;;
 		m|M)
-			echo "Mandatory"
+			echo "Removing bonus..."
 			rm *_bonus.c *_bonus.h
 			;;
 		*)
@@ -33,8 +33,9 @@ cleanRepo() {
 			return
 			;;
 	esac
-	# removeDebug
+	echo "\c  Done!"
+	removeDebug
 }
 
 cleanRepo
-# rm $0
+rm $0
