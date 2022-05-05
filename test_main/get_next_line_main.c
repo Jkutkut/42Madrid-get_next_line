@@ -6,7 +6,7 @@
 /*   By: jre-gonz <jre-gonz@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 10:37:34 by jkutkut           #+#    #+#             */
-/*   Updated: 2022/01/29 23:15:50 by jre-gonz         ###   ########.fr       */
+/*   Updated: 2022/05/05 18:59:03 by jre-gonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include "get_next_line.h"
 
-#define FILE "get_next_line_main.c"
+#define F "Makefile"
 #define OFFSET 1
 #define LINES 80
 // #define LINES 53
@@ -25,10 +25,10 @@ int	main(void)
 	int f;
 	size_t i;
 	
-	printf("\nFile: ~%s~\n", FILE);
+	printf("\nFile: ~%s~\n", F);
 	printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
 
-	if ((f = open(FILE, O_RDWR)) == -1)
+	if ((f = open(F, O_RDWR)) == -1)
 	{
 		printf("file opening failed\n");
 		exit(0);
