@@ -38,8 +38,9 @@ all: $(LIB)
 
 TYPE			=	"mandatory"
 $(LIB): $(MANDATORY)
-	@echo "$(TITLE)Compiling $(YELLOW)$(TYPE) $(TITLE)into $(LIB)$(NC)"
+	@echo "\n$(TITLE)Compiling $(YELLOW)$(TYPE) $(NC)into $(YELLOW)$(LIB)$(NC)\c"
 	@$(COMPILE_LIB) $(LIB) $^
+	@echo "$(GREEN) [OK]$(NC)\n"
 
 bonus: $(BONUS)
 	@make MANDATORY="$(BONUS)" TYPE="bonus"
