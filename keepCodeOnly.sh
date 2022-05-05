@@ -1,7 +1,7 @@
 #!/bin/sh
 
 removeDebug() {
-	dirsToRemove=".git test_files test_main gnlTester"
+	dirsToRemove=".git tests"
 	filesToRemove=".gitignore Makefile"
 
 	echo "Removing directories:\n$dirsToRemove"
@@ -18,7 +18,7 @@ cleanRepo() {
 	case $response in
 		b|B)
 			echo "Removing mandatory..."
-			for i in $(ls *bonus*); do
+			for i in $(ls src/*bonus*); do
 				f=$(echo $i | sed 's/_bonus//')
 				rm $f
 				mv $i $f
@@ -26,7 +26,7 @@ cleanRepo() {
 			;;
 		m|M)
 			echo "Removing bonus..."
-			rm *_bonus.c *_bonus.h
+			rm src/*_bonus.c include/*_bonus.h
 			;;
 		*)
 			echo "Error"
