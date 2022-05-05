@@ -1,3 +1,13 @@
+# Colors:
+NC			=	\033[0m
+LRED		=	\033[0;31m
+GREEN		=	\033[0;32m
+LRED		=	\033[1;31m
+LGREEN		=	\033[1;32m
+YELLOW		=	\033[1;33m
+LBLUE		=	\033[1;34m
+TITLE		=	\033[38;5;33m
+
 # Compiler options
 CC				=	gcc
 CC_LIB			=	ar
@@ -25,18 +35,20 @@ BONUS			=	${SRCS_BONUS:%.c=bin/%.o}
 # Triggers
 all: $(LIB)
 
+
+TYPE			=	"mandatory"
 $(LIB): $(MANDATORY)
-	$(info Compiling mandatory into $(LIB))
-	$(COMPILE_LIB) $(LIB) $^
+	@echo "$(TITLE)Compiling $(YELLOW)$(TYPE) $(TITLE)into $(LIB)$(NC)"
+	@$(COMPILE_LIB) $(LIB) $^
 
 bonus: $(BONUS)
-	$(info Compiling bonus into $(LIB))
-	make MANDATORY="$(BONUS)"
+	@make MANDATORY="$(BONUS)" TYPE="bonus"
 
 bin/%.o: src/%.c
-	@echo "- Compiling $< -> $@"
+	@echo "- ${TITLE}Compiling${NC} $< -> $@\c"
 	@mkdir -p $(dir $@)
-	$(COMPILE) -c $< -o $@ -D BUFFER_SIZE=$(BUFFER_S)
+	@$(COMPILE) -c $< -o $@ -D BUFFER_SIZE=$(BUFFER_S)
+	@echo "${GREEN} [OK]${NC}"
 
 # Clean logic
 .PHONY: re fclean
@@ -44,10 +56,11 @@ bin/%.o: src/%.c
 re: fclean all
 
 clean:
-	$(info Removing binary directory)
+	@echo "${LRED}Cleaning ${NC}binaries\c"
 	@rm -rf ./bin
+	@echo "${LGREEN} [OK]${NC}"
 
 fclean: clean
-	$(info Removing $(LIB))
+	@echo "${LRED}Cleaning ${NC}binaries\c"	
 	@rm -f $(LIB)
-	$(info Project now clean.)
+	@echo "${LGREEN} [OK]${NC}"
