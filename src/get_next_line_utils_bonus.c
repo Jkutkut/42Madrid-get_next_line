@@ -6,13 +6,13 @@
 /*   By: jre-gonz <jre-gonz@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 10:05:58 by jkutkut           #+#    #+#             */
-/*   Updated: 2022/03/24 13:32:09 by jre-gonz         ###   ########.fr       */
+/*   Updated: 2022/09/20 14:10:58 by jre-gonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-size_t	ft_strlen(const char *s)
+size_t	ft_gnl_strlen(const char *s)
 {
 	size_t	l;
 
@@ -22,13 +22,13 @@ size_t	ft_strlen(const char *s)
 	return (l);
 }
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+size_t	ft_gnl_strlcpy(char *dst, const char *src, size_t size)
 {
 	size_t	i;
 	size_t	dst_l;
 
 	i = 0;
-	dst_l = ft_strlen(src);
+	dst_l = ft_gnl_strlen(src);
 	if (size == 0)
 		return (dst_l);
 	while (src[i] && i < size - 1)
@@ -40,18 +40,18 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	return (dst_l);
 }
 
-char	*ft_strdup(const char *s)
+char	*ft_gnl_strdup(const char *s)
 {
 	char	*str;
 
-	str = malloc(sizeof(char) * (ft_strlen(s) + 1));
+	str = malloc(sizeof(char) * (ft_gnl_strlen(s) + 1));
 	if (str == NULL)
 		return (NULL);
-	ft_strlcpy(str, s, ft_strlen(s) + 1);
+	ft_gnl_strlcpy(str, s, ft_gnl_strlen(s) + 1);
 	return (str);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_gnl_strjoin(char const *s1, char const *s2)
 {
 	char	*str;
 	size_t	s1_len;
@@ -61,28 +61,28 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	{
 		if (s2 == NULL)
 			return (NULL);
-		return (ft_strdup(s2));
+		return (ft_gnl_strdup(s2));
 	}
 	if (s2 == NULL)
-		return (ft_strdup(s1));
-	s1_len = ft_strlen(s1);
-	s2_len = ft_strlen(s2);
+		return (ft_gnl_strdup(s1));
+	s1_len = ft_gnl_strlen(s1);
+	s2_len = ft_gnl_strlen(s2);
 	str = (char *) malloc(sizeof(char) * (s1_len + s2_len + 1));
 	if (str == NULL)
 		return (NULL);
-	ft_strlcpy(str, s1, s1_len + 1);
-	ft_strlcpy(str + s1_len, s2, s2_len + 1);
+	ft_gnl_strlcpy(str, s1, s1_len + 1);
+	ft_gnl_strlcpy(str + s1_len, s2, s2_len + 1);
 	return (str);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_gnl_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*str;
 	size_t	strlen;
 
 	if (s == NULL)
 		return (NULL);
-	strlen = ft_strlen(s);
+	strlen = ft_gnl_strlen(s);
 	if (start > strlen)
 	{
 		str = malloc(sizeof(char));
@@ -95,6 +95,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	str = malloc(sizeof(char) * len + 1);
 	if (str == NULL)
 		return (NULL);
-	ft_strlcpy(str, s + start, len + 1);
+	ft_gnl_strlcpy(str, s + start, len + 1);
 	return (str);
 }

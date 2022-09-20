@@ -6,7 +6,7 @@
 /*   By: jre-gonz <jre-gonz@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 10:00:44 by jkutkut           #+#    #+#             */
-/*   Updated: 2022/03/24 15:37:12 by jre-gonz         ###   ########.fr       */
+/*   Updated: 2022/09/20 14:10:51 by jre-gonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ typedef struct s_chunk
 
 char	*get_next_line(int fd);
 
-size_t	ft_strlen(const char *s);
-size_t	ft_strlcpy(char *dst, const char *src, size_t size);
-char	*ft_strdup(const char *s);
-char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
+size_t	ft_gnl_strlen(const char *s);
+size_t	ft_gnl_strlcpy(char *dst, const char *src, size_t size);
+char	*ft_gnl_strdup(const char *s);
+char	*ft_gnl_strjoin(char const *s1, char const *s2);
+char	*ft_gnl_substr(char const *s, unsigned int start, size_t len);
 
 #endif
