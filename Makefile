@@ -62,6 +62,6 @@ clean:
 	@echo "${LGREEN} [OK]${NC}"
 
 fclean: clean
-	@echo "${LRED}Cleaning ${NC}binaries\c"	
+	@echo "${LRED}Cleaning ${NC}${LIB}\c"	
 	@rm -f $(LIB)
 	@echo "${LGREEN} [OK]${NC}"
