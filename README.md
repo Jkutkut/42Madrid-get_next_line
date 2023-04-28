@@ -6,10 +6,10 @@ The goal is to be able to read a file, a stdin input or any other file descripto
 To use the get_next_line function, simply clone the repository to your local machine.
 The library comes with a Makefile that includes the following rules:
 
-all: compiles the library
-re: recompiles the library
-fclean: removes all object files and the library
-clean: removes all object files
+- `all`: compiles the library
+- `re`: recompiles the library
+- `fclean`: removes all object files and the library
+- `clean`: removes all object files
 
 To compile the library, run:
 
